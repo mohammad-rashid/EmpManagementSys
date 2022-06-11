@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj": {}
+    "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj": {
+    "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj",
+        "projectUniqueName": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj",
         "projectName": "Employee Management System",
-        "projectPath": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj",
+        "projectPath": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj",
         "packagesPath": "C:\\Users\\ER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\obj\\",
+        "outputPath": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -81,12 +81,12 @@
         }
       }
     },
-    "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj": {
+    "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj",
+        "projectUniqueName": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj",
         "projectName": "EmployeeManagementSystemTest",
-        "projectPath": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj",
+        "projectPath": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\EmployeeManagementSystemTest\\EmployeeManagementSystemTest.csproj",
         "packagesPath": "C:\\Users\\ER\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\EmployeeManagementSystemTest\\obj\\",
         "projectStyle": "PackageReference",
@@ -105,8 +105,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj": {
-                "projectPath": "C:\\Users\\ER\\source\\repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj"
+              "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj": {
+                "projectPath": "C:\\Users\\ER\\Source\\Repos\\EmpManagementSys\\Employee Management System\\Employee Management System.csproj"
               }
             }
           }

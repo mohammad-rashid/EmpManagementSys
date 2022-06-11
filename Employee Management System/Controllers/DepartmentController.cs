@@ -1,5 +1,6 @@
 ﻿using Employee_Management_System.Context;
 using Employee_Management_System.Models;
+using Employee_Management_System.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,8 +13,8 @@ namespace Employee_Management_System.Controllers
     [Produces("application/json")]
     public class DepartmentController : Controller
     {
-        private readonly AppDbContext _repository;
-        public DepartmentController(AppDbContext repository)
+        private readonly IServices _repository;
+        public DepartmentController(IServices repository)
         {
             _repository = repository;
         }
@@ -21,13 +22,13 @@ namespace Employee_Management_System.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repository.departments);
+            return Ok(_repository.GetAllDepartment());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var keyvalueFromDb = _repository.departments.Find(id);
+            var keyvalueFromDb = _repository.GetDepartmentById(id);
             if (keyvalueFromDb == null)
             {
                 return NotFound();
@@ -38,16 +39,16 @@ namespace Employee_Management_System.Controllers
         [HttpPost]
         public IActionResult Post(Department inputData)
         {
+            var result = _repository.GetAllDepartment();
            
-            if (_repository.departments.Any(a => a.DepartmentName == inputData.DepartmentName))
+            if (result.Any(a => a.DepartmentName == inputData.DepartmentName))
             {
                 return Conflict();
             }
 
             try
             {
-                _repository.departments.Add(inputData);
-                _repository.SaveChanges();
+                _repository.AddDepartment(inputData);
                 return Ok();
             }
             catch (Exception)
@@ -59,7 +60,7 @@ namespace Employee_Management_System.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Department inputData)
         {
-            var dbData = _repository.departments.Find(id);
+            var dbData = _repository.GetDepartmentById(id);
             if (dbData == null)
             {
                 return NotFound();
@@ -67,8 +68,7 @@ namespace Employee_Management_System.Controllers
 
             try
             {
-                dbData.DepartmentName = inputData.DepartmentName;
-                _repository.SaveChanges();
+                _repository.PutDepartmentData(inputData);
                 return Ok();
             }
             catch (Exception)
@@ -80,15 +80,14 @@ namespace Employee_Management_System.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var dbData = _repository.departments.Find(id);
+            var dbData = _repository.GetDepartmentById(id);
             if (dbData == null)
             {
                 return NotFound();
             }
             try
             {
-                _repository.departments.Remove(dbData);
-                _repository.SaveChanges();
+                _repository.DeleteDepartment(id);
                 return Ok();
             }
             catch (Exception)

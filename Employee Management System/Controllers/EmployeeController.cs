@@ -1,5 +1,6 @@
 ﻿using Employee_Management_System.Context;
 using Employee_Management_System.Models;
+using Employee_Management_System.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,8 +13,8 @@ namespace Employee_Management_System.Controllers
     [Produces("application/json")]
     public class EmployeeController : Controller
     {
-        AppDbContext _repository;
-        public EmployeeController(AppDbContext repository)
+        private readonly IServices _repository;
+        public EmployeeController(IServices repository)
         {
             _repository = repository;
         }
@@ -21,13 +22,13 @@ namespace Employee_Management_System.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repository.employees);
+            return Ok(_repository.GetAllEmployees());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var keyvalueFromDb = _repository.employees.Find(id);
+            var keyvalueFromDb = _repository.GetEmployeeById(id);
             if (keyvalueFromDb == null)
             {
                 return NotFound();
@@ -38,7 +39,7 @@ namespace Employee_Management_System.Controllers
         [HttpGet("Dep/{id}")]
         public IActionResult GetEmployeeByDepId(int id)
         {
-            var keyvalueFromDb = _repository.employees.Where(a=>a.DepartmentId == id);
+            var keyvalueFromDb = _repository.GetEmployeeByDepId(id);
             if (keyvalueFromDb == null)
             {
                 return NotFound();
@@ -49,15 +50,16 @@ namespace Employee_Management_System.Controllers
         [HttpPost]
         public IActionResult Post(Employee inputData)
         {
-            if (_repository.employees.Any(a => a.Name == inputData.Name && a.Contact == inputData.Contact))
+           
+            var allEmp = _repository.GetAllEmployees();
+            if (allEmp.Any(a => a.Name == inputData.Name && a.Contact == inputData.Contact))
             {
                 return Conflict();
             }
 
             try
             {
-                _repository.employees.Add(inputData);
-                _repository.SaveChanges();
+                _repository.AddEmployee(inputData);
                 return Ok();
             }
             catch (Exception)
@@ -69,7 +71,7 @@ namespace Employee_Management_System.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Employee inputData)
         {
-            var dbData = _repository.employees.Find(id);
+            var dbData = _repository.GetEmployeeById(id);
             if (dbData == null)
             {
                 return NotFound();
@@ -77,14 +79,7 @@ namespace Employee_Management_System.Controllers
 
             try
             {
-                dbData.Name = inputData.Name;
-                dbData.Surname = inputData.Surname;
-                dbData.Address = inputData.Address;
-                dbData.Qualification = inputData.Qualification;
-                dbData.Contact = inputData.Contact;
-                dbData.DepartmentId = inputData.DepartmentId;
-
-                _repository.SaveChanges();
+                _repository.PutEmployeeData(inputData);
                 return Ok();
             }
             catch (Exception)
@@ -96,15 +91,14 @@ namespace Employee_Management_System.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var dbData = _repository.employees.Find(id);
+            var dbData = _repository.GetEmployeeById(id);
             if (dbData == null)
             {
                 return NotFound();
             }
             try
             {
-                _repository.employees.Remove(dbData);
-                _repository.SaveChanges();
+                _repository.DeleteEmployee(id);
                 return Ok();
             }
             catch (Exception)

@@ -1,4 +1,5 @@
 using Employee_Management_System.Context;
+using Employee_Management_System.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,8 @@ namespace Employee_Management_System
 
             services.AddControllers();
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddScoped<IServices,Services>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

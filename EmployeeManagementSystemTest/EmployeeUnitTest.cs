@@ -32,6 +32,7 @@ namespace EmployeeManagementSystemTest
 
             SeedDatabase();
         }
+        //This runs after the test
         [TestCleanup]
         public void CleanUp()
         {
